@@ -1,0 +1,253 @@
+:root {
+    /* Monochrome Sci-Fi Theme Colors */
+    --bg-void: #000000;
+    --surface-dark: #0a0a0a;
+    --text-main: #ffffff;
+    --text-muted: #888888;
+    --border-glow: rgba(255, 255, 255, 0.2);
+    --accent-white: #ffffff;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    background-color: var(--bg-void);
+    color: var(--text-main);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ==========================================
+   ANIMATED STARFIELD BACKGROUND
+   ========================================== */
+@keyframes move-stars {
+    from { background-position: 0 0; }
+    to { background-position: -10000px 5000px; }
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    /* Embedded SVG Stars */
+    background: transparent url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400"><circle cx="50" cy="50" r="1" fill="white" opacity="0.8"/><circle cx="200" cy="150" r="1.5" fill="white" opacity="0.9"/><circle cx="350" cy="300" r="1" fill="white" opacity="0.5"/><circle cx="100" cy="350" r="2" fill="white" opacity="0.6"/><circle cx="280" cy="80" r="1.2" fill="white" opacity="0.7"/></svg>') repeat;
+    z-index: 0;
+    animation: move-stars 150s linear infinite;
+    pointer-events: none;
+}
+
+body::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, transparent 0%, #000000 100%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.min-h-screen {
+    min-height: 100vh !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    background: transparent !important;
+    z-index: 1;
+}
+
+.spaceship-container {
+    width: 100%;
+    max-width: 460px;
+    padding: 2rem;
+    z-index: 2;
+    position: relative;
+}
+
+.spaceship-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.spaceship-logo {
+    font-size: 2.75rem;
+    font-weight: 900;
+    color: var(--text-main);
+    text-transform: uppercase;
+    letter-spacing: 0.35rem;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+.spaceship-tagline {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin: 0.5rem 0;
+    letter-spacing: 0.14rem;
+    text-transform: uppercase;
+}
+
+.mission-info {
+    display: flex;
+    gap: 0.85rem;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-glow);
+}
+
+.mission-info span {
+    color: var(--accent-white);
+    font-weight: 700;
+}
+
+.login-card {
+    background: rgba(10, 10, 10, 0.85);
+    border: 1px solid var(--border-glow);
+    border-radius: 0; /* Squared edges for B&W theme */
+    padding: 2rem;
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(20px);
+}
+
+.welcome-text {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+}
+
+.welcome-text strong {
+    color: var(--text-main);
+}
+
+/* Form Styling */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-main) !important;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08rem;
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"] {
+    width: 100%;
+    padding: 0.85rem 1rem !important;
+    background-color: transparent !important;
+    border: 1px solid var(--text-muted) !important;
+    border-radius: 0 !important;
+    color: var(--text-main) !important;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="text"]:focus {
+    outline: none !important;
+    border-color: var(--accent-white) !important;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2) !important;
+    background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+input::placeholder {
+    color: rgba(136, 136, 136, 0.5) !important;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-muted);
+}
+
+.remember-me input {
+    accent-color: var(--text-main);
+    border-radius: 0;
+}
+
+.forgot-link {
+    color: var(--text-muted) !important;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.forgot-link:hover {
+    color: var(--text-main) !important;
+    text-decoration: underline;
+}
+
+button {
+    background: transparent !important;
+    color: var(--text-main) !important;
+    border: 1px solid var(--text-main) !important;
+    border-radius: 0 !important;
+    font-weight: 800 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.12rem;
+    transition: all 0.3s ease;
+    width: 100%;
+    padding: 0.85rem 1rem;
+}
+
+button:hover {
+    background: var(--text-main) !important;
+    color: var(--bg-void) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.3) !important;
+}
+
+.error-message {
+    background-color: transparent;
+    border: 1px solid #ff4444;
+    color: #ff4444;
+    padding: 0.9rem;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+.status-message {
+    background-color: transparent;
+    border: 1px solid var(--text-main);
+    color: var(--text-main);
+    padding: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.form-section {
+    margin-bottom: 1.5rem;
+}
+
+.button-container {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.back-link-container {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+.back-link {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: all 0.3s ease;
+}
+
+.back-link:hover {
+    color: var(--text-main);
+}
