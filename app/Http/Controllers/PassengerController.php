@@ -15,8 +15,9 @@ class PassengerController extends Controller
         
         // Only load the resources, we no longer need to load history here
         $allowedResources = Resource::where('min_tier_weight', '<=', $user->tier->weight ?? 0)->get();
+        $resources = Resource::orderBy('min_tier_weight')->get(); 
 
-        return view('passenger.dashboard', compact('user', 'allowedResources'));
+        return view('passenger.dashboard', compact('user', 'resources', 'allowedResources'));
     }
 
     // PAGE 2: Usage History & Date Filtering
