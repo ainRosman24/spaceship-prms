@@ -105,7 +105,7 @@
                             <select name="resource_id" class="form-select form-select-lg text-center fw-bold border-secondary" style="background-color: #0f172a; color: #ffffff;" required>
                                 <option value="" style="background-color: #060913; color: #94a3b8;" disabled selected>-- SELECT FACILITY --</option>
                                 
-                                @foreach($allowedResources as $resource)
+                                @foreach($resources as $resource)
                                     <option value="{{ $resource->id }}" style="background-color: #0f172a; color: #ffffff;">
                                         {{ $resource->name }}
                                     </option>
