@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Tier;
 use App\Models\Resource;
 use App\Models\ResourceUsageLog;
+use Illuminate\Support\Facades\Hash;
 
 class CrewLeadController extends Controller
 {
@@ -73,5 +74,65 @@ class CrewLeadController extends Controller
         $logs = $query->paginate(10);
         
         return view('admin.logs', compact('logs', 'passengers'));
+    }
+
+    public function updateTier(Request $request, User $user)
+    {
+        $request->validate([
+            'tier_id' => 'required|exists:tiers,id'
+        ]);
+
+        $user->update([
+            'tier_id' => $request->tier_id
+        ]);
+
+        return back()->with('success', "System Update: {$user->name}'s membership has been dynamically adjusted.");
+    }
+
+    public function storePassenger(Request $request)
+    {
+        $request->validate([
+            'name'      => 'required|string|max:255',
+            'email'     => 'required|string|email|unique:users',
+            'password'  => 'required|string|min:8',
+            'tier_id'   => 'required|exists:tiers,id',
+        ]);
+
+        User::create([
+            'name'      => $request->name,
+            'email'     => $request->email,
+            'password'  => Hash::make($request->password),
+            'role'      => 'passenger',
+            'tier_id'   => $request->tier_id,
+        ]);
+
+        return back()->with('success', 'System Update: New passenger profile provisioned successfully.');
+    }
+
+    public function destroyPassenger(User $user)
+    {
+        $user->delete();
+        return back()->with('success', 'System Update: Passenger profile decommissioned.');
+    }
+
+    public function storeResource(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'min_tier_weight' => 'required|integer|min:1|max:3',
+        ]);
+
+        Resource::create([
+            'name' => $request->name,
+            'min_tier_weight' => $request->min_tier_weight,
+        ]);
+
+        return back()->with('success', 'System Update: New ship facility provisioned.');
+    }
+
+    public function destroyResource(Resource $resource)
+    {
+        $resource->delete();
+        return back()->with('success', 'System Update: Ship facility decommissioned.');
     }
 }
