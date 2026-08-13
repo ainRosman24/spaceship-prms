@@ -12,10 +12,11 @@ Build a Passenger Resource Management System that allows Crew Leads to manage pa
 
 ## 🛠️ Tech Stack
 
-*   **Framework: Laravel (PHP)
-*   **Database: MySQL
-*   **Frontend: Blade Templating, Bootstrap 5, Custom CSS3
-*   **Data Visualization: Chart.js
+*   **Framework:** Laravel (PHP)
+*   **Database:** MySQL
+*   **Frontend:** Blade Templating, Bootstrap 5, Custom CSS3
+*   **Data Visualization:** Chart.js
+*   **AI Usage Disclosure:** Gemini, Co Pilot
 
 ## ⚙️ Installation & Setup
 
